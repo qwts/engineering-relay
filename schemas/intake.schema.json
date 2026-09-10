@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "stage": {
+      "const": "intake"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "outOfScope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    },
+    "profileReason": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "impact": {
+      "type": "object",
+      "properties": {
+        "newService": {
+          "type": "boolean"
+        },
+        "persistentData": {
+          "type": "boolean"
+        },
+        "identity": {
+          "type": "boolean"
+        },
+        "infrastructure": {
+          "type": "boolean"
+        },
+        "publicApi": {
+          "type": "boolean"
+        },
+        "production": {
+          "type": "boolean"
+        },
+        "retirement": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "newService",
+        "persistentData",
+        "identity",
+        "infrastructure",
+        "publicApi",
+        "production",
+        "retirement"
+      ],
+      "additionalProperties": false
+    },
+    "applicability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "enum": [
+              "product",
+              "data",
+              "security",
+              "platform",
+              "reliability",
+              "experience",
+              "quality",
+              "retirement"
+            ]
+          },
+          "disposition": {
+            "type": "string",
+            "enum": [
+              "required",
+              "not-applicable"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "domain",
+          "disposition",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 8
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "stage",
+    "summary",
+    "scope",
+    "outOfScope",
+    "profileReason",
+    "impact",
+    "applicability"
+  ],
+  "additionalProperties": false
+}

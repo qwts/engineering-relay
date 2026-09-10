@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "stage": "implementation",
+  "summary": "Implemented deterministic CSV formatting and acceptance tests.",
+  "changes": [
+    {
+      "path": "src/csv.mjs",
+      "requirementIds": [
+        "REQ-1",
+        "REQ-2",
+        "REQ-3"
+      ],
+      "description": "Pure formatter implements quoting, ordering, line endings, and validation."
+    },
+    {
+      "path": "test/csv.test.mjs",
+      "requirementIds": [
+        "REQ-1",
+        "REQ-2",
+        "REQ-3"
+      ],
+      "description": "Expected-output tests cover requested normal, edge, and failure behavior."
+    }
+  ],
+  "risks": [],
+  "rollback": {
+    "procedure": "Restore the previous src/csv.mjs module from the source-control revision before the change; there is no data migration or external side effect.",
+    "checkIds": []
+  },
+  "documentationPaths": [
+    "brief.md"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "stage": "requirements",
+  "summary": "",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "description": "",
+      "acceptance": "",
+      "source": {
+        "kind": "user",
+        "reference": ""
+      }
+    }
+  ],
+  "constraints": [],
+  "assumptions": [],
+  "questions": []
+}

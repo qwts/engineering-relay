@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "stage": "requirements",
+  "summary": "Three observable requirements are grounded in the supplied brief.",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "description": "Emit explicit column order and headers.",
+      "acceptance": "Empty input still emits the specified header; records follow columns in order with CRLF separators and trailing CRLF.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-2",
+      "description": "Serialize CSV fields correctly.",
+      "acceptance": "Fields containing commas, quotes, CR, or LF are quoted; embedded quotes are doubled; null and missing values become empty fields.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-3",
+      "description": "Preserve input and reject invalid top-level arguments.",
+      "acceptance": "Frozen records and columns serialize without mutation; non-array rows or columns throws TypeError.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    }
+  ],
+  "constraints": [],
+  "assumptions": [],
+  "questions": []
+}

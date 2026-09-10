@@ -1,0 +1,182 @@
+{
+  "id": "duration-format",
+  "profile": "small",
+  "workflow": "change",
+  "ready": true,
+  "stages": [
+    {
+      "stage": "intake",
+      "status": "complete",
+      "fingerprint": "2180054bef324266a47e08f00b1daaa9058bc0a91fea84373f116dc75c8d7417",
+      "reason": ""
+    },
+    {
+      "stage": "requirements",
+      "status": "complete",
+      "fingerprint": "09c2671f154a6d0bf5f6bc65522dbfecc66a610cb580acd132a33794c09e4572",
+      "reason": ""
+    },
+    {
+      "stage": "design",
+      "status": "complete",
+      "fingerprint": "d7d1fba54fa6c601178dec0a737445e704a3efc920a2c489dbfb4b507430e230",
+      "reason": ""
+    },
+    {
+      "stage": "implementation",
+      "status": "complete",
+      "fingerprint": "b6be45ea2498e655fe346a7637e621183d3f88995d9820b1b1ccd9ef4399b773",
+      "reason": ""
+    },
+    {
+      "stage": "verification",
+      "status": "complete",
+      "fingerprint": "a11bab43175f0ff4934106f45724c2f65d8acb428c7b2cf27b9a79d958f49341",
+      "reason": ""
+    },
+    {
+      "stage": "readiness",
+      "status": "complete",
+      "fingerprint": "0a7ce93d3fd0aea5bc65e06530947c42fc9d53cdfaac43f886f84afd12f84919",
+      "reason": ""
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHECK-BEHAVIOR",
+      "status": "pass",
+      "evidence": "b93f1d69-faeb-4b48-b12d-fa1a21fccf32",
+      "reason": ""
+    }
+  ],
+  "next": null,
+  "actor": {
+    "agent": "forward-trial-b",
+    "model": "unspecified",
+    "at": "2026-09-10T13:04:02.242Z"
+  },
+  "releaseAuthorized": false,
+  "generatedAt": "2026-09-10T13:04:45.489Z",
+  "playbook": {
+    "version": "1.1.0",
+    "fingerprint": "1493c32ab249cb2fd134f9db7421842509615076c0426dc7809f832502d6eee4"
+  },
+  "source": {
+    "revision": null,
+    "files": {
+      "AGENTS.md": "95531e63ffd9003c11076799e5737b049959f30745d9b9562ae8e08b1e051e42",
+      "brief.md": "9aad202cfdbf625c0c3dcdc92deb091f8ad14825fea4920522948a17d71fd03d",
+      "src/duration.mjs": "278838673b751c327bbedd327afd18b8c518f69b7e21c4b475aeacdec8507f3a",
+      "test/duration.test.mjs": "9613aa3764b61a9248de20379521e3baa5722ddab0b61ce331ecb75a62268b88"
+    }
+  },
+  "traceability": [
+    {
+      "id": "REQ-FORMAT",
+      "acceptance": "0 yields 00:00:00, 59 yields 00:00:59, 60 yields 00:01:00, 3599 yields 00:59:59, and 3600 yields 01:00:00; -0 is accepted as zero.",
+      "decisions": [
+        "DEC-ARITHMETIC",
+        "DEC-TESTS"
+      ],
+      "tasks": [
+        "TASK-UTILITY",
+        "TASK-TESTS"
+      ],
+      "changes": [
+        "src/duration.mjs",
+        "test/duration.test.mjs"
+      ],
+      "checks": [
+        "CHECK-BEHAVIOR"
+      ]
+    },
+    {
+      "id": "REQ-HOURS",
+      "acceptance": "359999 yields 99:59:59 and 360000 yields 100:00:00. Finite integer Number values above the safe integer limit and Number.MAX_VALUE are accepted and represented using the integer value actually supplied, with decimal hours and no wrapping or exponential notation.",
+      "decisions": [
+        "DEC-ARITHMETIC",
+        "DEC-TESTS"
+      ],
+      "tasks": [
+        "TASK-UTILITY",
+        "TASK-TESTS"
+      ],
+      "changes": [
+        "src/duration.mjs",
+        "test/duration.test.mjs"
+      ],
+      "checks": [
+        "CHECK-BEHAVIOR"
+      ]
+    },
+    {
+      "id": "REQ-TYPE",
+      "acceptance": "Strings, undefined, null, booleans, arrays, objects, boxed numbers, bigint, symbols, and functions throw TypeError without coercion.",
+      "decisions": [
+        "DEC-ARITHMETIC",
+        "DEC-TESTS"
+      ],
+      "tasks": [
+        "TASK-UTILITY",
+        "TASK-TESTS"
+      ],
+      "changes": [
+        "src/duration.mjs",
+        "test/duration.test.mjs"
+      ],
+      "checks": [
+        "CHECK-BEHAVIOR"
+      ]
+    },
+    {
+      "id": "REQ-RANGE",
+      "acceptance": "Negative integers, positive and negative fractions, NaN, Infinity, and -Infinity throw RangeError.",
+      "decisions": [
+        "DEC-ARITHMETIC",
+        "DEC-TESTS"
+      ],
+      "tasks": [
+        "TASK-UTILITY",
+        "TASK-TESTS"
+      ],
+      "changes": [
+        "src/duration.mjs",
+        "test/duration.test.mjs"
+      ],
+      "checks": [
+        "CHECK-BEHAVIOR"
+      ]
+    },
+    {
+      "id": "REQ-TESTS",
+      "acceptance": "A local Node test suite calls the exported function and compares outputs with independently specified literal fixtures and exact error classes, including formatting boundaries and invalid arguments.",
+      "decisions": [
+        "DEC-TESTS"
+      ],
+      "tasks": [
+        "TASK-TESTS"
+      ],
+      "changes": [
+        "test/duration.test.mjs"
+      ],
+      "checks": [
+        "CHECK-BEHAVIOR"
+      ]
+    }
+  ],
+  "questions": [],
+  "assumptions": [],
+  "risks": [],
+  "actors": [
+    {
+      "agent": "forward-trial-a",
+      "model": "unspecified",
+      "at": "2026-09-10T12:56:45.422Z"
+    },
+    {
+      "agent": "forward-trial-b",
+      "model": "unspecified",
+      "at": "2026-09-10T13:04:02.242Z"
+    }
+  ]
+}

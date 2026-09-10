@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "stage": "intake",
+  "summary": "",
+  "scope": "",
+  "outOfScope": [],
+  "profileReason": "",
+  "impact": {
+    "newService": false,
+    "persistentData": false,
+    "identity": false,
+    "infrastructure": false,
+    "publicApi": false,
+    "production": false,
+    "retirement": false
+  },
+  "applicability": [
+    {
+      "domain": "product",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "data",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "security",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "platform",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "reliability",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "experience",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "quality",
+      "disposition": "not-applicable",
+      "reason": ""
+    },
+    {
+      "domain": "retirement",
+      "disposition": "not-applicable",
+      "reason": ""
+    }
+  ]
+}

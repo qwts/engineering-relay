@@ -1,0 +1,2 @@
+# Preserve historical command logs verbatim, including their whitespace.
+evaluations/forward-trial/evidence/*.log -whitespace

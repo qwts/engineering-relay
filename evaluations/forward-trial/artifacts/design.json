@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "stage": "design",
+  "summary": "Keep the existing ES module and validate Number inputs before exact integer decomposition. Add Node built-in tests with literal fixtures. Local evidence expires after 24 hours to bound the trial handoff window; source and test changes independently invalidate receipts. A local Node v26.8.2 feasibility probe accepted BigInt(Number.MAX_VALUE) and produced 305 hour digits, minute 26 and second 8; the check will use a Python-derived literal fixture for independent confirmation.",
+  "decisions": [
+    {
+      "id": "DEC-ARITHMETIC",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE"
+      ],
+      "options": [
+        "Validate and decompose the accepted Number using BigInt, then emit padded decimal strings.",
+        "Use floating-point division and modulo directly on Numbers.",
+        "Use a Date/ISO string to obtain a time."
+      ],
+      "chosen": "Validate and decompose the accepted Number using BigInt, then emit padded decimal strings.",
+      "rationale": "BigInt exactly represents the integer Number actually supplied, avoiding division rounding and exponential hour strings for large values. Date formatting wraps days and has a smaller range. No dependency or module API change is needed.",
+      "consequences": "BigInt is internal only; public bigint arguments still throw TypeError. The Number input may already have lost precision before the call, so the represented integer is formatted. Hours may contain hundreds of digits under the explicit finite-number contract.",
+      "revisitWhen": "The brief narrows or changes the accepted numeric type/range, or the consuming runtime lacks native BigInt support."
+    },
+    {
+      "id": "DEC-TESTS",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE",
+        "REQ-TESTS"
+      ],
+      "options": [
+        "Use node:test with independently specified literal output fixtures and exact error-class assertions.",
+        "Add an external test framework and property-generation dependency."
+      ],
+      "chosen": "Use node:test with independently specified literal output fixtures and exact error-class assertions.",
+      "rationale": "The installed Node runtime supports the existing .mjs module and built-in tests. Literal fixtures detect incorrect rollover, truncation, wrapping, coercion, and rejection behavior without reproducing the implementation algorithm.",
+      "consequences": "No package installation, service, or test dependency is necessary. Tests cover representative classes and difficult numeric boundaries rather than enumerating all Number values.",
+      "revisitWhen": "The project adopts an established test framework or new integration behavior requires additional test machinery."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-UTILITY",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE"
+      ],
+      "description": "Implement validation and duration formatting in the existing export, with a concise contract comment.",
+      "paths": [
+        "src/duration.mjs"
+      ],
+      "acceptance": "The current exported function returns the literal expected strings and exact error classes required by the brief."
+    },
+    {
+      "id": "TASK-TESTS",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE",
+        "REQ-TESTS"
+      ],
+      "description": "Add independent local behavior tests for zero, second/minute/hour boundaries, unbounded hours, huge represented integers, and invalid type/range classes.",
+      "paths": [
+        "test/duration.test.mjs"
+      ],
+      "acceptance": "node --test test/duration.test.mjs passes every fixture without network access or writes outside the run evidence directory."
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHECK-BEHAVIOR",
+      "kind": "command",
+      "description": "Execute independent Node behavior tests for the exported module, including literal formatting boundaries, full finite integer range, TypeError and RangeError classes.",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE",
+        "REQ-TESTS"
+      ],
+      "inputPaths": [
+        "src/duration.mjs",
+        "test/duration.test.mjs"
+      ],
+      "argv": [
+        "node",
+        "--test",
+        "test/duration.test.mjs"
+      ],
+      "timeoutSeconds": 30,
+      "maxAgeHours": 24
+    }
+  ],
+  "domainPlans": [
+    {
+      "domain": "product",
+      "summary": "The existing function contract and five sourced requirements determine behavior. CHECK-BEHAVIOR exercises valid formatting and invalid inputs. No service, UI, deployment, or storage plan applies.",
+      "artifactPaths": [],
+      "checkIds": [
+        "CHECK-BEHAVIOR"
+      ]
+    },
+    {
+      "domain": "quality",
+      "summary": "Independent literal fixtures and exact error classes are the acceptance evidence. Inspect the local command before execution and retain runner output; no coverage percentage or human approval is required by the local brief.",
+      "artifactPaths": [],
+      "checkIds": [
+        "CHECK-BEHAVIOR"
+      ]
+    }
+  ]
+}

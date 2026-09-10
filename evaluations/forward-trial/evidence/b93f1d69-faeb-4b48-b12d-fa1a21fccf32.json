@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "b93f1d69-faeb-4b48-b12d-fa1a21fccf32",
+  "checkId": "CHECK-BEHAVIOR",
+  "sequence": 1,
+  "kind": "command",
+  "context": "0ab87244c853b49d00c9cda1780118d213d45da20839b6033be780cdbd6f7323",
+  "status": "pass",
+  "startedAt": "2026-09-10T13:01:02.918Z",
+  "finishedAt": "2026-09-10T13:01:03.074Z",
+  "actor": {
+    "agent": "forward-trial-a",
+    "model": "unspecified",
+    "at": "2026-09-10T12:56:45.422Z"
+  },
+  "environment": {
+    "node": "v26.8.2",
+    "platform": "darwin"
+  },
+  "source": {
+    "revision": null,
+    "files": {
+      "AGENTS.md": "95531e63ffd9003c11076799e5737b049959f30745d9b9562ae8e08b1e051e42",
+      "brief.md": "9aad202cfdbf625c0c3dcdc92deb091f8ad14825fea4920522948a17d71fd03d",
+      "src/duration.mjs": "278838673b751c327bbedd327afd18b8c518f69b7e21c4b475aeacdec8507f3a",
+      "test/duration.test.mjs": "9613aa3764b61a9248de20379521e3baa5722ddab0b61ce331ecb75a62268b88"
+    }
+  },
+  "argv": [
+    "node",
+    "--test",
+    "test/duration.test.mjs"
+  ],
+  "exitCode": 0,
+  "error": null,
+  "summary": "",
+  "files": {
+    "evidence/b93f1d69-faeb-4b48-b12d-fa1a21fccf32.log": "33e67cb0c7c00b5d14e1a20c3864a16d5a597e64b53e106346b3f2dc0b74e27f"
+  }
+}

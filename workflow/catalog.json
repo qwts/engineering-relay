@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "stages": ["intake", "requirements", "design", "implementation", "verification", "readiness"],
+  "profiles": {
+    "small": "A bounded change within an existing architecture; document the impact and run relevant checks.",
+    "service": "A new service or substantial feature; include platform, security, and operational plans.",
+    "critical": "A change with elevated data, identity, availability, or retirement impact; verify recovery and obtain the required reviews."
+  },
+  "workflows": ["change", "operate", "retire"],
+  "domains": {
+    "product": { "documents": ["01", "02", "06"], "skill": "engineering-design" },
+    "data": { "documents": ["03", "10"], "skill": "engineering-data-security" },
+    "security": { "documents": ["04"], "skill": "engineering-data-security" },
+    "platform": { "documents": ["07", "08", "09", "11", "13", "15"], "skill": "engineering-platform" },
+    "reliability": { "documents": ["12", "14", "16", "21"], "skill": "engineering-operations" },
+    "experience": { "documents": ["17", "19"], "skill": "engineering-verification" },
+    "quality": { "documents": ["05", "18", "20", "23"], "skill": "engineering-verification" },
+    "retirement": { "documents": ["22"], "skill": "engineering-retirement" }
+  },
+  "stageSkills": {
+    "intake": "engineering-intake",
+    "requirements": "engineering-requirements",
+    "design": "engineering-design",
+    "implementation": "engineering-implementation",
+    "verification": "engineering-verification",
+    "readiness": "engineering-verification"
+  }
+}

@@ -1,0 +1,55 @@
+Command: ["node","--test","test/duration.test.mjs"]
+Exit: 0
+Signal: 
+
+STDOUT
+✔ formats 0 seconds as 00:00:00 (0.813041ms)
+✔ formats -0 seconds as 00:00:00 (0.059709ms)
+✔ formats 1 seconds as 00:00:01 (0.05125ms)
+✔ formats 9 seconds as 00:00:09 (0.047125ms)
+✔ formats 59 seconds as 00:00:59 (0.050834ms)
+✔ formats 60 seconds as 00:01:00 (0.047792ms)
+✔ formats 61 seconds as 00:01:01 (0.040959ms)
+✔ formats 3599 seconds as 00:59:59 (0.044708ms)
+✔ formats 3600 seconds as 01:00:00 (0.053958ms)
+✔ formats 3661 seconds as 01:01:01 (0.076625ms)
+✔ formats 86399 seconds as 23:59:59 (0.047709ms)
+✔ formats 86400 seconds as 24:00:00 (0.352292ms)
+✔ formats 359999 seconds as 99:59:59 (0.033708ms)
+✔ formats 360000 seconds as 100:00:00 (0.023417ms)
+✔ formats 360001 seconds as 100:00:01 (0.02175ms)
+✔ formats 9007199254740991 seconds as 2501999792983:36:31 (0.025209ms)
+✔ formats 9007199254740992 seconds as 2501999792983:36:32 (0.028083ms)
+✔ formats 1.7976931348623157e+308 seconds as 49935920412842103004035395481028987999464046534956943499699299111988127994452371877941544064657466158761238598198439573398422590802628939657907651862093754718347197382375356132290413913997035817798852363459759428417939788028673041157169044258923152298554951723373534213538382550255361078125112229495590238:26:08 (0.025458ms)
+✔ rejects undefined with TypeError (0.529292ms)
+✔ rejects null with TypeError (0.044167ms)
+✔ rejects numeric string with TypeError (0.03ms)
+✔ rejects empty string with TypeError (0.027666ms)
+✔ rejects true with TypeError (0.025917ms)
+✔ rejects false with TypeError (0.02425ms)
+✔ rejects array with TypeError (0.023625ms)
+✔ rejects object with TypeError (0.023625ms)
+✔ rejects boxed number with TypeError (0.028625ms)
+✔ rejects bigint with TypeError (0.028583ms)
+✔ rejects symbol with TypeError (0.027375ms)
+✔ rejects function with TypeError (0.02375ms)
+✔ rejects object with a coercion hook with TypeError (0.026791ms)
+✔ rejects invalid numeric value -1 with RangeError (0.046708ms)
+✔ rejects invalid numeric value -1.7976931348623157e+308 with RangeError (0.031541ms)
+✔ rejects invalid numeric value -0.5 with RangeError (0.029833ms)
+✔ rejects invalid numeric value 0.5 with RangeError (0.023958ms)
+✔ rejects invalid numeric value 1.5 with RangeError (0.0275ms)
+✔ rejects invalid numeric value 5e-324 with RangeError (0.024542ms)
+✔ rejects invalid numeric value NaN with RangeError (0.026583ms)
+✔ rejects invalid numeric value Infinity with RangeError (0.023208ms)
+✔ rejects invalid numeric value -Infinity with RangeError (0.023583ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.287542
+
+STDERR

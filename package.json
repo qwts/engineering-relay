@@ -1,0 +1,55 @@
+{
+  "name": "engineering-relay",
+  "version": "1.1.1",
+  "description": "Portable engineering skills and a resumable, evidence-driven SDLC workflow",
+  "type": "module",
+  "bin": {
+    "engineering-relay": "bin/engineering-relay.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "schemas",
+    "workflow",
+    "skills",
+    "docs",
+    "examples",
+    "README.md",
+    "usage.md",
+    "CHANGELOG.md",
+    "test",
+    "scripts",
+    ".github/workflows/validate.yml",
+    ".github/rulesets/main.json",
+    "evaluations"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check-package.mjs",
+    "example": "node examples/feature/run.mjs",
+    "eval": "node --test test/scenarios.test.mjs",
+    "validate": "npm test && npm run check",
+    "lint:markdown": "markdownlint docs workflow skills examples evaluations README.md usage.md AGENTS.md CHANGELOG.md .github .agents",
+    "lint:markdown:fix": "markdownlint docs workflow skills examples evaluations README.md usage.md AGENTS.md CHANGELOG.md .github .agents --fix"
+  },
+  "dependencies": {
+    "ajv": "8.17.1"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "0.47.0"
+  },
+  "bundleDependencies": [
+    "ajv"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwts/engineering-relay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qwts/engineering-relay/issues"
+  },
+  "homepage": "https://github.com/qwts/engineering-relay#readme"
+}

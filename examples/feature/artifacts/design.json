@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "stage": "design",
+  "summary": "Extend the existing module with a small formatter and independent exact-output tests.",
+  "decisions": [
+    {
+      "id": "DEC-1",
+      "requirementIds": [
+        "REQ-1",
+        "REQ-2",
+        "REQ-3"
+      ],
+      "options": [
+        "Implement a local pure formatter",
+        "Add a CSV dependency"
+      ],
+      "chosen": "Implement a local pure formatter",
+      "rationale": "The requested behavior is bounded and has no parsing, streaming, or dialect requirements.",
+      "consequences": "The project owns escaping behavior and regression tests; no runtime dependency is added.",
+      "revisitWhen": "Streaming, dialect selection, parsing, or more complex value semantics become required."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-1",
+      "requirementIds": [
+        "REQ-1",
+        "REQ-2",
+        "REQ-3"
+      ],
+      "description": "Implement toCsv and independent acceptance tests.",
+      "paths": [
+        "src/csv.mjs",
+        "test/csv.test.mjs"
+      ],
+      "acceptance": "All stated exact-output, mutation, and invalid-argument tests pass."
+    }
+  ],
+  "checks": [
+    {
+      "id": "TEST-CSV",
+      "kind": "command",
+      "description": "Run independent expected-output, escaping, immutable input, and argument-validation tests.",
+      "requirementIds": [
+        "REQ-1",
+        "REQ-2",
+        "REQ-3"
+      ],
+      "inputPaths": [
+        "src/csv.mjs",
+        "test/csv.test.mjs"
+      ],
+      "argv": [
+        "node",
+        "--test",
+        "test/csv.test.mjs"
+      ],
+      "timeoutSeconds": 30,
+      "maxAgeHours": 24
+    }
+  ],
+  "domainPlans": [
+    {
+      "domain": "product",
+      "summary": "Verify the requested local utility behavior with independently specified outputs.",
+      "artifactPaths": [],
+      "checkIds": [
+        "TEST-CSV"
+      ]
+    },
+    {
+      "domain": "quality",
+      "summary": "Verify the requested local utility behavior with independently specified outputs.",
+      "artifactPaths": [],
+      "checkIds": [
+        "TEST-CSV"
+      ]
+    }
+  ]
+}

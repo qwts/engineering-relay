@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "stage": "implementation",
+  "summary": "",
+  "changes": [],
+  "risks": [],
+  "rollback": {
+    "procedure": "",
+    "checkIds": []
+  },
+  "documentationPaths": []
+}

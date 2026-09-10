@@ -1,0 +1,46 @@
+{
+  "agent": "forward-trial-a",
+  "model": "unspecified",
+  "run": ".engineering/runs/duration-format",
+  "outcome": "Implementation complete. CHECK-BEHAVIOR passed on its first runner attempt. Verification is ready but not completed; readiness remains blocked pending verification, as requested.",
+  "checks": [
+    {
+      "command": "node --test test/duration.test.mjs",
+      "phase": "development baseline",
+      "result": "All 40 tests failed against the original unimplemented stub; retained development-baseline.log."
+    },
+    {
+      "command": "node --test test/duration.test.mjs",
+      "phase": "development final",
+      "exitCode": 0,
+      "result": "40 tests passed, zero failed."
+    },
+    {
+      "command": "node .engineering/playbook/bin/playbook.mjs check --run .engineering/runs/duration-format --check CHECK-BEHAVIOR",
+      "phase": "runner evidence",
+      "exitCode": 0,
+      "result": "40 tests passed, zero failed; first attempt; evidence b93f1d69-faeb-4b48-b12d-fa1a21fccf32."
+    }
+  ],
+  "workflowObservations": [
+    {
+      "severity": "low",
+      "observation": "The generated handoff instructs engineering-playbook status, but command -v engineering-playbook returned exit 1 with no executable in this consuming project. The execution guide and AGENTS.md provide the working local node invocation.",
+      "reproduction": "command -v engineering-playbook",
+      "workaround": "Use node .engineering/playbook/bin/playbook.mjs status/adopt/next --run .engineering/runs/duration-format as documented in the execution guide."
+    },
+    {
+      "severity": "informational",
+      "observation": "A file-kind source reference is interpreted as one exact file path. I initially combined brief.md, src/duration.mjs and the user instruction into one string; record persisted it and complete rejected it with Missing file. Splitting it into a brief.md file reference and a user-kind constraint resolved the authoring error. Explicit guidance that file references are exact single paths would avoid this friction."
+    }
+  ],
+  "unnecessaryUserQuestions": [],
+  "runnerFailures": [],
+  "scope": "Only this isolated project changed. Installed playbook left unchanged. No package examples read, no external services contacted, no production actions.",
+  "freshAgentNextSteps": [
+    "Read state.json, artifacts/*.json, evidence JSON/log, and generated handoff.md.",
+    "Run node .engineering/playbook/bin/playbook.mjs status --run .engineering/runs/duration-format.",
+    "Run node .engineering/playbook/bin/playbook.mjs adopt --run .engineering/runs/duration-format --agent <actual-agent> --model unspecified, then next.",
+    "Inspect behavior, traceability and existing evidence. Complete verification and readiness only if the current evidence satisfies the procedure, then regenerate the report."
+  ]
+}

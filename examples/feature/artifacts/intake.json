@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "stage": "intake",
+  "summary": "Add a deterministic CSV formatter to an existing local JavaScript utility.",
+  "scope": "Implement toCsv(rows, columns) and its specified serialization behavior.",
+  "outOfScope": [
+    "Network endpoints, persistent storage, deployment, and spreadsheet formula interpretation."
+  ],
+  "profileReason": "Bounded pure utility change with no runtime infrastructure or access-control impact.",
+  "impact": {
+    "newService": false,
+    "persistentData": false,
+    "identity": false,
+    "infrastructure": false,
+    "publicApi": false,
+    "production": false,
+    "retirement": false
+  },
+  "applicability": [
+    {
+      "domain": "product",
+      "disposition": "required",
+      "reason": "The utility must implement the requested caller behavior."
+    },
+    {
+      "domain": "data",
+      "disposition": "not-applicable",
+      "reason": "No persistence, migration, or retention behavior changes."
+    },
+    {
+      "domain": "security",
+      "disposition": "not-applicable",
+      "reason": "The pure utility introduces no access boundary or credential handling."
+    },
+    {
+      "domain": "platform",
+      "disposition": "not-applicable",
+      "reason": "Existing JavaScript module and Node test runner are sufficient."
+    },
+    {
+      "domain": "reliability",
+      "disposition": "not-applicable",
+      "reason": "No deployed service, operational target, or recovery topology changes."
+    },
+    {
+      "domain": "experience",
+      "disposition": "not-applicable",
+      "reason": "No UI, pilot, or user training is part of the utility request."
+    },
+    {
+      "domain": "quality",
+      "disposition": "required",
+      "reason": "Independent tests verify exact serialization and failure behavior."
+    },
+    {
+      "domain": "retirement",
+      "disposition": "not-applicable",
+      "reason": "No service or data store is being retired."
+    }
+  ]
+}

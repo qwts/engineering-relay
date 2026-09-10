@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "stage": "implementation",
+  "summary": "Implemented formatDuration in the existing ES module with strict validation and exact integer decomposition. Added 40 independent local behavior tests. All 40 failed against the original stub (development-baseline.log) and all 40 passed after implementation using node --test test/duration.test.mjs; runner evidence is collected after this final source snapshot.",
+  "changes": [
+    {
+      "path": "src/duration.mjs",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE"
+      ],
+      "description": "Preserves the existing export. Non-number arguments throw TypeError; non-integer/non-finite/negative Numbers throw RangeError. Valid represented integers, including -0 and Number.MAX_VALUE, produce decimal hours with two-digit minimum and two-digit minutes/seconds. BigInt arithmetic is internal only."
+    },
+    {
+      "path": "test/duration.test.mjs",
+      "requirementIds": [
+        "REQ-FORMAT",
+        "REQ-HOURS",
+        "REQ-TYPE",
+        "REQ-RANGE",
+        "REQ-TESTS"
+      ],
+      "description": "Adds 18 literal formatting fixtures, 13 non-number rejection cases, and nine invalid-number rejection cases using node:test and strict assertions. Tests use fixed expected strings and exact error classes, with no package install, network, or external side effects."
+    }
+  ],
+  "risks": [],
+  "rollback": {
+    "procedure": "For this isolated local trial only, restore src/duration.mjs to its recorded baseline contents: export function formatDuration(seconds) { throw new Error(\"Not implemented\"); }. Remove the newly added test/duration.test.mjs if abandoning the feature. Preserve the run records and collected evidence. This restores the intentionally unimplemented starter, not a functional release; rerun status afterward because the source snapshot and existing evidence will become stale. No deployment or data recovery action exists.",
+    "checkIds": []
+  },
+  "documentationPaths": [
+    "src/duration.mjs",
+    "test/duration.test.mjs"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "stage": "requirements",
+  "summary": "Observable contract from brief.md for formatDuration and independent local tests.",
+  "requirements": [
+    {
+      "id": "REQ-FORMAT",
+      "description": "Format finite nonnegative integer numbers of seconds as hours:minutes:seconds.",
+      "acceptance": "0 yields 00:00:00, 59 yields 00:00:59, 60 yields 00:01:00, 3599 yields 00:59:59, and 3600 yields 01:00:00; -0 is accepted as zero.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-HOURS",
+      "description": "Hours have at least two digits and may grow past 99; minutes and seconds always have two digits.",
+      "acceptance": "359999 yields 99:59:59 and 360000 yields 100:00:00. Finite integer Number values above the safe integer limit and Number.MAX_VALUE are accepted and represented using the integer value actually supplied, with decimal hours and no wrapping or exponential notation.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-TYPE",
+      "description": "Reject every non-number argument with TypeError.",
+      "acceptance": "Strings, undefined, null, booleans, arrays, objects, boxed numbers, bigint, symbols, and functions throw TypeError without coercion.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-RANGE",
+      "description": "Reject negative, fractional, or non-finite number arguments with RangeError.",
+      "acceptance": "Negative integers, positive and negative fractions, NaN, Infinity, and -Infinity throw RangeError.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "REQ-TESTS",
+      "description": "Add independent behavior tests for the existing pure local utility.",
+      "acceptance": "A local Node test suite calls the exported function and compares outputs with independently specified literal fixtures and exact error classes, including formatting boundaries and invalid arguments.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "CON-LOCAL",
+      "description": "Keep the change in the existing src/duration.mjs module and add independent local tests; no deployment, data store, or network endpoint.",
+      "source": {
+        "kind": "file",
+        "reference": "brief.md"
+      }
+    },
+    {
+      "id": "CON-TRIAL",
+      "description": "Work only inside the isolated trial project, do not alter the installed playbook, and stop after collecting evidence and generating a handoff before completing verification or readiness.",
+      "source": {
+        "kind": "user",
+        "reference": "Assigned forward-trial task from parent agent."
+      }
+    }
+  ],
+  "assumptions": [],
+  "questions": []
+}

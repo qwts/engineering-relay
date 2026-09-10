@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "stage": "intake",
+  "summary": "Implement the existing formatDuration export and independent behavior tests.",
+  "scope": "The formatDuration(seconds) export in src/duration.mjs accepts finite nonnegative integer numbers, emits unbounded hours with minutes and seconds padded, and throws the specified error types (brief.md).",
+  "outOfScope": [
+    "Deployment, external services, persistence, networking, UI, package publishing, and changes to the installed playbook."
+  ],
+  "profileReason": "The brief and starter module define one pure local utility within the existing ES module architecture. No new service or elevated operational, data, or identity impact exists.",
+  "impact": {
+    "newService": false,
+    "persistentData": false,
+    "identity": false,
+    "infrastructure": false,
+    "publicApi": false,
+    "production": false,
+    "retirement": false
+  },
+  "applicability": [
+    {
+      "domain": "product",
+      "disposition": "required",
+      "reason": "brief.md specifies observable formatting and rejection behavior for callers of the existing module."
+    },
+    {
+      "domain": "data",
+      "disposition": "not-applicable",
+      "reason": "The pure utility neither persists nor migrates data; brief.md explicitly excludes a data store."
+    },
+    {
+      "domain": "security",
+      "disposition": "not-applicable",
+      "reason": "No identity, permissions, sensitive data, network boundary, or external service is changed."
+    },
+    {
+      "domain": "platform",
+      "disposition": "not-applicable",
+      "reason": "The existing local ES module runs on the installed Node runtime; no infrastructure or deployment work is requested."
+    },
+    {
+      "domain": "reliability",
+      "disposition": "not-applicable",
+      "reason": "The pure utility has no service availability, operational recovery, or production target."
+    },
+    {
+      "domain": "experience",
+      "disposition": "not-applicable",
+      "reason": "No user interface, accessibility surface, or localization change is requested; output formatting is covered by product requirements."
+    },
+    {
+      "domain": "quality",
+      "disposition": "required",
+      "reason": "brief.md explicitly requires independent behavior tests, including valid inputs and error types."
+    },
+    {
+      "domain": "retirement",
+      "disposition": "not-applicable",
+      "reason": "No system, data, or interface is being retired."
+    }
+  ]
+}
