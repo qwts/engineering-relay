@@ -36,10 +36,10 @@
     "lint:markdown:fix": "markdownlint docs workflow skills examples evaluations README.md usage.md AGENTS.md CHANGELOG.md .github .agents --fix"
   },
   "dependencies": {
-    "ajv": "8.17.1"
+    "ajv": "8.18.0"
   },
   "devDependencies": {
-    "markdownlint-cli": "0.47.0"
+    "markdownlint-cli": "0.49.1"
   },
   "bundleDependencies": [
     "ajv"
